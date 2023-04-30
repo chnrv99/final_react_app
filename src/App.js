@@ -17,9 +17,6 @@ class App extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const data = {
-      name: this.state.title
-    };
     axios
       .get(url)
       .then(res => console.log(res))
