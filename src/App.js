@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React from "react";
+import axios from "axios";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+var url = ''
+class App extends React.Component {
+  state = {
+    name: ""
+  };
+
+  onTitleChange = e => {
+    this.setState({
+      name: e.target.value
+    });
+    url = "/api/HttpTrigger4?name=" + e.target.value;
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const data = {
+      name: this.state.title
+    };
+    axios
+      .get(url)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  
+
+  render() {
+    return (
+      <div className="post1">
+        <div className='heading'>Tutorial for connecting azure database and functions</div>
+        <div className="title">Enter a name to add to database</div>
+        <form className="post" onSubmit={this.handleSubmit}>
+          <input className="input" type="text" 
+            placeholder="Title" value={this.state.title}
+            onChange={this.onTitleChange} required
+          />
+          <button type="submit">Create Post</button>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default App;
