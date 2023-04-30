@@ -12,7 +12,7 @@ class App extends React.Component {
     this.setState({
       name: e.target.value
     });
-    url = "/api/HttpTrigger4?name=" + e.target.value;
+    url = "/api/HttpTrigger5?name=" + e.target.value;
   };
 
   handleSubmit = e => {
